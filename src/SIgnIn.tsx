@@ -17,10 +17,12 @@ const SignIn = () => {
           if (status === 200) {
             signIn({
               token: data.token,
-              // 1 hour
-              expiresIn: 3600,
+              // 12 minute
+              expiresIn: 12,
               tokenType: "Bearer",
               authState: { email: "anshusahrma.me" },
+              refreshToken: data.refresh_token,                    // Only if you are using refreshToken feature
+              refreshTokenExpireIn: 10
             });
           }
         });
