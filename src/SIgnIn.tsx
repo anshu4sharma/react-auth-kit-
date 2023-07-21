@@ -13,7 +13,7 @@ const SignIn = () => {
       axios
         .post("http://localhost:5000/api/v1/login", formData)
         .then(({ data, status }) => {
-          console.log(data);
+          console.log(data.access_token,"refreshed access_token");
           if (status === 200) {
             signIn({
               token: data.access_token,

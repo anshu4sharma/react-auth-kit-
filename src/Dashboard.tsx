@@ -7,7 +7,6 @@ import {useAuthUser} from 'react-auth-kit'
 const Dashboard = () => {
   const signOut = useSignOut();
   const token = useAuthUser()
-  console.log(token()?.token,"authHeader");
   
   const [userdata, setUser] = useState({});
 
@@ -24,6 +23,8 @@ const Dashboard = () => {
     console.log(error);
    }
   };
+  console.log(token()?.token,"access to be passed");
+  
   return (
     <div className="m-4 gap-4 flex flex-col">
       <Link to="/">HOme</Link>

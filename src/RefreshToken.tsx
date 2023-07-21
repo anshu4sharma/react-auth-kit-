@@ -7,9 +7,11 @@ const refreshApi = createRefresh({
     // authToken,
     // authTokenExpireAt,
     // refreshTokenExpiresAt,
-    // authUserState,
+    authUserState,
     refreshToken,
   }) => {
+    console.log(authUserState,"authUserState");
+    
     try {
       const { data } = await axios.post(
         "http://localhost:5000/api/v1/refresh",
@@ -17,14 +19,19 @@ const refreshApi = createRefresh({
           token: refreshToken,
         }
       );
+      console.log( data.access_token,"refreshed access_token");
       return {
         isSuccess: true,
-        newAuthToken: data.token,
+        newAuthToken: data.access_token,
         newAuthTokenExpireIn: 1,
         newRefreshTokenExpiresIn: 10,
+        newRefreshToken: data.refresh_token,
+        newAuthUserState: {
+            token:data.access_token
+        },
       };
     } catch (error) {
-      console.error(error);
+      console.error(error,"sad");
       return {
         isSuccess: false,
       };
