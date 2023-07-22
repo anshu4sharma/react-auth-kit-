@@ -15,9 +15,12 @@ const SignIn = () => {
         .then(({ data, status }) => {
           console.log(data.access_token,"refreshed access_token");
           if (status === 200) {
+            //  dont use the authtoken expuration time in expiresIn
+            // use the refresh token expuration time in refreshTokenExpireIn
+            // cookie will be deleted after 1 minute when the user again open the app after 1 minute he have to login again so make the time higher near to refresh token time
+            
             signIn({
               token: data.access_token,
-              // 12 minute
               expiresIn: 1,
               tokenType: "Bearer",
               authState: { token: data.access_token },

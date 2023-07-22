@@ -19,7 +19,9 @@ const refreshApi = createRefresh({
           token: refreshToken,
         }
       );
-      console.log( data.access_token,"refreshed access_token");
+      // the token will be changed access token every minute also set the new authTokenExpireIn to
+      // higher or near to refresh token expuration time
+      // cookie will be deleted after 1 minute when the user again open the app after 1 minute he have to login again so make the time higher near to refresh token time
       return {
         isSuccess: true,
         newAuthToken: data.access_token,
